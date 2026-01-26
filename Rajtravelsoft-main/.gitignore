@@ -1,0 +1,34 @@
+# Environment variables
+.env
+.env.*
+backend/.env
+frontend/.env
+
+# Node
+node_modules/
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode/
+.cursor/
+
+# Uploads & generated files
+uploads/
+backend/uploads/
+public/pdfs/
+backend/public/pdfs/
+
+# Build output
+dist/
+build/
+
+# Temporary
+*.log

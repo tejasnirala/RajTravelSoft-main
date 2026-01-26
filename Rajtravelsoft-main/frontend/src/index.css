@@ -1,0 +1,298 @@
+@import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;600;700;800;900&display=swap');
+
+@import "tw-animate-css";
+
+
+
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  --background: #ffffff;
+  --foreground: #475569;
+  --card: #ecfeff;
+  --card-foreground: #164e63;
+  --popover: #ffffff;
+  --popover-foreground: #374151;
+  --primary: #164e63;
+  --primary-foreground: #ffffff;
+  --secondary: #84cc16;
+  --secondary-foreground: #164e63;
+  --muted: #f0fdf4;
+  --muted-foreground: #374151;
+  --accent: #84cc16;
+  --accent-foreground: #164e63;
+  --destructive: #dc2626;
+  --destructive-foreground: #ffffff;
+  --border: #e2e8f0;
+  --input: #f1f5f9;
+  --ring: rgba(20, 184, 166, 0.5);
+  --chart-1: #fbbf24;
+  --chart-2: #f472b6;
+  --chart-3: #60a5fa;
+  --chart-4: #c084fc;
+  --chart-5: #34d399;
+  --radius: 0.5rem;
+  --sidebar: #ffffff;
+  --sidebar-foreground: #374151;
+  --sidebar-primary: #ecfeff;
+  --sidebar-primary-foreground: #164e63;
+  --sidebar-accent: #84cc16;
+  --sidebar-accent-foreground: #164e63;
+  --sidebar-border: #e2e8f0;
+  --sidebar-ring: rgba(20, 184, 166, 0.5);
+}
+
+.dark {
+  --background: #0f172a;
+  --foreground: #e2e8f0;
+  --card: #1e293b;
+  --card-foreground: #e2e8f0;
+  --popover: #1e293b;
+  --popover-foreground: #e2e8f0;
+  --primary: #0891b2;
+  --primary-foreground: #ffffff;
+  --secondary: #84cc16;
+  --secondary-foreground: #0f172a;
+  --muted: #1e293b;
+  --muted-foreground: #94a3b8;
+  --accent: #84cc16;
+  --accent-foreground: #0f172a;
+  --destructive: #dc2626;
+  --destructive-foreground: #ffffff;
+  --border: #334155;
+  --input: #1e293b;
+  --ring: rgba(8, 145, 178, 0.5);
+  --chart-1: #fbbf24;
+  --chart-2: #f472b6;
+  --chart-3: #60a5fa;
+  --chart-4: #c084fc;
+  --chart-5: #34d399;
+  --sidebar: #0f172a;
+  --sidebar-foreground: #e2e8f0;
+  --sidebar-primary: #1e293b;
+  --sidebar-primary-foreground: #0891b2;
+  --sidebar-accent: #84cc16;
+  --sidebar-accent-foreground: #0f172a;
+  --sidebar-border: #334155;
+  --sidebar-ring: rgba(8, 145, 178, 0.5);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+
+
+
+.hero-title, .package-title {
+  font-family: 'Playfair Display', serif; /* elegant stylish headings */
+}
+/* global.css ya component css me */
+.scrollbar-hide::-webkit-scrollbar {
+  display: none; /* Chrome, Safari */
+}
+.scrollbar-hide {
+  -ms-overflow-style: none;  /* IE 10+ */
+  scrollbar-width: none;     /* Firefox */
+}
+
+
+
+.ql-container {
+  width: 100%;
+}
+
+.ql-container .ql-editor {
+  max-height: 200px;
+  overflow-y: auto;
+  width: 100%;
+  box-sizing: border-box;
+  word-wrap: break-word;
+  white-space: pre-wrap;
+}
+
+* {
+  -webkit-print-color-adjust: exact !important;
+  print-color-adjust: exact !important;
+}
+
+html, body {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+
+.Baloo{
+  font-family: "Baloo 2";
+}
+
+.montserrat {
+  font-family: "Montserrat";
+}
+
+.Balooow {
+  text-shadow: 5px 5px 0px #2e5c89;
+}
+
+select option {
+  white-space: normal !important;
+  word-wrap: break-word !important;
+}
+
+.custom-premium-datepicker {
+  @apply w-full px-4 py-3.5 pl-12 pr-10 
+         bg-black/10 backdrop-blur-sm
+         border border-gray-200/80 rounded-lg
+         text-gray-800 font-semibold text-base
+         shadow-sm hover:shadow-lg
+         focus:outline-none focus:ring-4 focus:ring-blue-500/30
+         focus:border-blue-400
+         transition-all duration-300 ease-in-out
+         placeholder:text-gray-400;
+}
+
+.custom-premium-calendar {
+  @apply mt-3 bg-white/95 backdrop-blur-xl 
+         border border-gray-200/50 rounded-3xl 
+         shadow-2xl overflow-hidden
+         animate-in fade-in zoom-in-95 duration-200;
+}
+
+/* Selected date style */
+.custom-premium-calendar .react-datepicker__day--selected {
+  @apply bg-gradient-to-br from-blue-500 to-blue-600 text-white font-bold 
+         rounded-full shadow-lg transform scale-110;
+}
+
+/* Today highlight */
+.custom-premium-calendar .react-datepicker__day--today {
+  @apply bg-white text-yellow-900 font-bold border-2 border-yellow-400 rounded-full;
+}
+
+/* Header premium look */
+.custom-premium-calendar .react-datepicker__header {
+  @apply bg-gradient-to-r from-blue-600 to-cyan-500 text-black border-none rounded-t-3xl;
+}
+
+.custom-premium-calendar .react-datepicker__current-month,
+.custom-premium-calendar .react-datepicker__day-name {
+  @apply text-white font-bold;
+}
+
+.pop{
+  font-family: "poppins" !important;
+}
+
+.custom-antd-table .ant-table-cell {
+  /* Only table cell styling, not buttons */
+}
+
+.custom-antd-table button {
+  all: unset;
+  /* Then reapply button styles */
+}
+
+
+@media print {
+  body {
+    zoom: 0.8; /* adjust if content cuts off */
+  }
+  .no-break {
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+  }
+}
+
+
+/* ================================================= */
+/*   AUTO 80% ZOOM SIRF 700px → 1500px SCREENS PE   */
+/*   Chrome, Firefox, Edge, Safari — SAB MEIN KAAM  */
+/* ================================================= */
+
+html, body, #root {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: auto;           /* Yeh zaroori hai */
+}
+
+/* Sirf 700px se 1500px width wale screens pe 80% zoom */
+@media screen and (min-width: 701px) and (max-width: 1500px) {
+  
+  /* Chrome, Edge, Opera, Brave — sab mein kaam karega */
+  body {
+    zoom: 0.8;                    /* Yeh line sabse powerful hai */
+  }
+
+  /* Firefox ke liye fallback (kyunki Firefox zoom support nahi karta) */
+  @supports not (zoom: normal) {
+    html {
+      transform: scale(0.8);
+      transform-origin: top left;
+      width: 125vw;               /* 100 ÷ 0.8 = 125 */
+      height: 125vh;
+      overflow: auto;
+    }
+  }
+}
+
+/* Mobile (<700px) aur bade monitor (>1500px) pe 100% rakho */
+@media screen and (max-width: 700px),
+       screen and (min-width: 1501px) {
+  body {
+    zoom: normal !important;
+  }
+  html {
+    transform: none !important;
+    width: 100% !important;
+    height: 100% !important;
+    overflow: auto;
+  }
+}
