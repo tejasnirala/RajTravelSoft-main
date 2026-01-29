@@ -19,7 +19,16 @@ const storage = multer.diskStorage({
   },
 });
 
-const upload = multer({ storage });
+const fileFilter = (req, file, cb) => {
+    const allowed = /jpeg|jpg|png|webp|avif/;
+    if (allowed.test(path.extname(file.originalname).toLowerCase())) {
+        cb(null, true);
+    } else {
+        cb(new Error("Only images are allowed"), false);
+    }
+};
+
+const upload = multer({ storage, fileFilter });
 app.use("/uploads", express.static("uploads")); // 👈 ज़रूरी
 
 
@@ -59,7 +68,13 @@ router.post("/register", async (req, res) => {
     if (existing) return res.status(400).json({ message: "Email already exists" });
 
     const hash = await bcrypt.hash(password, 10);
-    const newUser = new User({ name, email, password: hash, role: "user", plainPassword: password });
+    const newUser = new User({ 
+      name, 
+      email, 
+      password: hash, 
+      role: "user", 
+      // plainPassword: password
+    });
     await newUser.save();
     res.json({ ok: true, message: "User registered" });
   } catch (err) {

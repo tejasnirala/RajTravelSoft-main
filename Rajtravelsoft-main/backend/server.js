@@ -194,6 +194,17 @@ async function compressAllImages() {
 app.get("/api/generate-pdf", async (req, res) => {
   const { url } = req.query;
   if (!url) return res.status(400).send("Missing URL");
+
+  // SSRF Protection
+  try {
+    const targetUrl = new URL(url);
+    const ALLOWED_DOMAINS = ["tour.rajasthantouring.in", "apitour.rajasthantouring.in", "localhost"];
+    if (!ALLOWED_DOMAINS.includes(targetUrl.hostname)) {
+      return res.status(403).send("Forbidden: External URLs not allowed");
+    }
+  } catch (err) {
+    return res.status(400).send("Invalid URL");
+  }
   console.log(url, "url");
 
   res.setHeader('Content-Type', 'application/pdf');
@@ -448,7 +459,17 @@ const storage = multer.diskStorage({
   },
 });
 
-const upload = multer({ storage });
+const fileFilter = (req, file, cb) => {
+  const allowed = /jpeg|jpg|png|webp|avif|pdf/;
+  const ext = path.extname(file.originalname).toLowerCase();
+  if (allowed.test(ext)) {
+    cb(null, true);
+  } else {
+    cb(new Error("Only images and PDFs are allowed"), false);
+  }
+};
+
+const upload = multer({ storage, fileFilter });
 
 // 🖼️ Upload Route
 app.post("/upload", upload.single("image"), (req, res) => {

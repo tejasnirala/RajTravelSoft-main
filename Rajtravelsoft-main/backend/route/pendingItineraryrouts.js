@@ -19,9 +19,18 @@ const storage = multer.diskStorage({
     destination: (req, file, cb) => cb(null, "uploads/"),
     filename: (req, file, cb) => cb(null, `${Date.now()}-${file.originalname}`),
 });
+const fileFilter = (req, file, cb) => {
+    const allowed = /jpeg|jpg|png|webp|avif|pdf/;
+    if (allowed.test(path.extname(file.originalname).toLowerCase())) {
+        cb(null, true);
+    } else {
+        cb(new Error("Only images and PDFs are allowed"), false);
+    }
+};
+
 const upload = multer({
     storage,
-
+    fileFilter,
 });
 const transporter = nodemailer.createTransport({
     service: "gmail",
@@ -59,6 +68,13 @@ const authMiddleware = (req, res, next) => {
         console.log(err, "stata");
         return res.status(401).json({ message: "Invalid token" });
     }
+};
+
+const requireAdmin = (req, res, next) => {
+    if (!req.user || (req.user.role !== "admin" && req.user.role2 !== "superadmin")) {
+        return res.status(403).json({ message: "Admin access required" });
+    }
+    next();
 };
 
 const parseTravelDate = (dateStr) => {
@@ -1397,7 +1413,7 @@ View Link: ${viewLink}
 });
 
 
-router.delete("/clean-trash", async (req, res) => {
+router.delete("/clean-trash", authMiddleware, requireAdmin, async (req, res) => {
     try {
         const thirtyDaysAgo = new Date();
         thirtyDaysAgo.setDate(thirtyDaysAgo.getDate() - 30);
@@ -1417,7 +1433,7 @@ router.delete("/clean-trash", async (req, res) => {
     }
 });
 
-router.delete("/:id", async (req, res) => {
+router.delete("/:id", authMiddleware, requireAdmin, async (req, res) => {
     try {
         const { id } = req.params;
         const booking = await Booking.findById(id);
@@ -1440,7 +1456,7 @@ router.delete("/:id", async (req, res) => {
     }
 });
 
-router.put("/:id/restore", async (req, res) => {
+router.put("/:id/restore", authMiddleware, requireAdmin, async (req, res) => {
     try {
         const { id } = req.params;
         const booking = await Booking.findById(id);
@@ -1463,7 +1479,7 @@ router.put("/:id/restore", async (req, res) => {
     }
 });
 
-router.put("/approve/:id", async (req, res) => {
+router.put("/approve/:id", authMiddleware, requireAdmin, async (req, res) => {
     try {
         const { id } = req.params;
 
@@ -1494,7 +1510,7 @@ router.put("/approve/:id", async (req, res) => {
 });
 
 
-router.delete("/:id/permanent", async (req, res) => {
+router.delete("/:id/permanent", authMiddleware, requireAdmin, async (req, res) => {
     try {
         const { id } = req.params;
         const result = await Booking.deleteOne({ _id: id });

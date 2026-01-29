@@ -28,8 +28,17 @@ const storage = multer.diskStorage({
     cb(null, `${Date.now()}-${file.originalname}`)
   },
 })
+const fileFilter = (req, file, cb) => {
+  const allowed = /jpeg|jpg|png|webp|avif|pdf/;
+  if (allowed.test(path.extname(file.originalname).toLowerCase())) {
+    cb(null, true);
+  } else {
+    cb(new Error("Only images and PDFs are allowed"), false);
+  }
+};
 const upload = multer({
   storage,
+  fileFilter,
 })
 
 

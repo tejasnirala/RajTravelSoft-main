@@ -21,7 +21,7 @@ const userSchema = new mongoose.Schema(
     resetTokenExpiry: { type: Date },
     isSuperAdmin: { type: Boolean, default: false },
 
-    plainPassword: String, // add this field for admin view only
+    // plainPassword: String, // add this field for admin view only
   },
   { timestamps: true }
 );

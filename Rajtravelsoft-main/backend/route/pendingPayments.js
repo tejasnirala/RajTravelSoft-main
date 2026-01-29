@@ -674,7 +674,6 @@ router.post("/:pendingId", authMiddleware, async (req, res) => {
       message: "New payment added (admin)",
       pendingId: pending._id,
       payment,
-      user: pending.clientDetails,
       status: pending.status,
     });
 
@@ -774,7 +773,6 @@ router.post("/user/:pendingId", async (req, res) => {
       message: "New payment added to pending",
       pendingId: pending._id,
       payment,
-      user: pending.clientDetails,
       status: pending.status,
     });
 
